@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> الحمري مولاي الشريف</title>
+    <!-- google iocns -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- css style sheet -->
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --top-bg: #32373c;
+    --bottom-bg: #18191c;
+    --lightblack: #515c6f;
+    --white: #ffffff;
+    --lightbshadow: rgba(0, 0, 0, 0.15);
+    --main-color: #009bff;
+  }
+ 
+  body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: rgb(207, 207, 207);
+}
+
+.container{
+  width: 350px;
+  height: 650px;
+  padding: 25px 30px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
+  background: linear-gradient(#9ce3ff 0%, #fd878d 90%);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.342);
+   background-blend-mode: screen;
+}
+
+
+  .container i {
+    cursor: pointer;
+  }
+  .top-bar,
+  .progress-area .song-timer,
+  .controls,
+  .music-list .header,
+  .music-list ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .top-bar i {
+    font-size: 30px;
+    color: var(--lightblack);
+  }
+  .top-bar i:first-child {
+    margin-left: -7px;
+  }
+  .top-bar span {
+    font-size: 18px;
+    margin-left: -3px;
+    color: var(--lightblack);
+  }
+.img-area{
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  margin-top: 25px;
+  border-radius: 50%;
+  border-radius: 50%;
+	box-shadow: 0 0 0 5px #ffffff,
+	0 0 2px #fff,
+	13px 13px 20px #31313163,
+	-10px -10px 20px #e6f6ff;
+
+}
+.img-area img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+  .song-details{
+  text-align: center;
+  margin: 10px 0;
+}
+.song-details p{
+  color: #ffffff;
+}
+.song-details .name{
+  font-size: 21px;
+}
+.song-details .artist{
+  font-size: 15px;
+  opacity: 0.9;
+  line-height: 35px;
+}
+.progress-area{
+  height: 6px;
+  width: 100%;
+  border-radius: 50px;
+  background: #f0f0f081;
+  cursor: pointer;
+}
+.progress-area .progress-bar{
+  
+  height: inherit;
+  width: 0%;
+  position: relative;
+  border-radius: inherit;
+  background: #ffffff;
+}
+.progress-bar::before{
+  content: "";
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  top: 50%;
+  right: -5px;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  background: inherit;
+  transition: opacity 0.2s ease;
+}
+.progress-area:hover .progress-bar::before{
+  opacity: 1;
+  pointer-events: auto;
+}
+.progress-area .song-timer{
+  margin-top: 2px;
+}
+.song-timer span{
+  font-size: 13px;
+  color: #ffffff;
+}
+.controls{
+  margin: 70px 0 5px 0;
+}
+.controls i{
+  font-size: 28px;
+  user-select: none;
+  background:#ffffff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.controls i:nth-child(2),
+.controls i:nth-child(4){
+  font-size: 43px;
+}
+.controls #prev{
+  margin-right: -13px;
+}
+
+.controls #next{
+  margin-left: -13px;
+}
+
+.controls i.prev{
+  font-size: 38px;
+  }
+  .controls i.next{
+    font-size: 38px;
+    }
+
+.controls .play-pause{
+  height: 54px;
+  width: 54px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 
+	0 0 2px #fff,
+	8px 8px 15px #ff5e66,
+	-3px -3px 15px #f0ecec	
+	;
+ 
+}
+.play-pause::before{
+  position: absolute;
+  content: "";
+  height: 43px;
+  width: 43px;
+  border-radius: inherit;
+  background: transparent;
+  border: 3px solid #ffffff;
+}
+.play-pause i{
+  height: 43px;
+  width: 43px;
+  line-height: 43px;
+  text-align: center;
+  background: inherit;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: white;
+  position: absolute;
+  
+}
+.prev , .next {
+  box-shadow: 
+	0 0 2px #fff,
+	8px 8px 15px #ff5e66,
+	-3px -3px 15px #f0ecec;
+  border-radius: 50%;
+}
+  .music-list {
+    position: absolute;
+    background: var(--white);
+    width: 100%;
+    left: 0;
+    bottom: -55%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5;
+    padding: 15px 30px;
+    border-radius: 15px;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.15s ease-out;
+  }
+  .music-list.show {
+    bottom: 0;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .header .row {
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    color: var(--lightblack);
+  }
+  .header .row i {
+    cursor: default;
+  }
+  .header .row span {
+    margin-left: 5px;
+  }
+  .header #close {
+    font-size: 22px;
+    color: var(--lightblack);
+  }
+  .music-list ul {
+    margin: 10px 0;
+    max-height: 260px;
+    overflow: auto;
+  }
+  .music-list ul::-webkit-scrollbar {
+    width: 0px;
+  }
+  .music-list ul li {
+    list-style: none;
+    display: flex;
+    cursor: pointer;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    color: var(--lightblack);
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .music-list ul li:last-child {
+    border-bottom: 0px;
+  }
+  .music-list ul li .row span {
+    font-size: 17px;
+  }
+  .music-list ul li .row p {
+    opacity: 0.9;
+  }
+  ul li .audio-duration {
+    font-size: 16px;
+  }
+  ul li.playing {
+    pointer-events: none;
+    color: var(--bottom-bg);
+  }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top-bar">
+        <i class="material-icons"> favorite_border </i>
+        <span> بلدي الرشيدية</span>
+        <i class="material-icons">add</i>
+      </div>
+
+    <div class="img-area">
+      <img src="" alt="">
+    </div>
+
+     
+
+  <div class="song-details">
+      <p class="name"></p>
+      <p class="artist"></p>
+    </div>
+
+
+
+
+  <div class="progress-area">
+
+      <div class="progress-bar">
+        <audio id="main-audio" src=""></audio>
+      </div>
+      <div class="song-timer">
+        <span class="current-time">0:00</span>
+        <span class="max-duration">0:00</span>
+      </div>
+      <audio id="main-audio" src=""></audio>
+    </div>
+
+   <div class="controls">
+      <i id="repeat-plist" class="material-icons" title="Playlist looped">repeat</i>
+      <i id="prev" class="material-icons prev">fast_rewind</i>
+      <div class="play-pause">
+        <i class="material-icons play">play_arrow</i>
+      </div>
+      <i id="next" class="material-icons next">fast_forward</i>
+      <i id="more-music" class="material-icons">queue_music</i>
+    </div>
+
+
+  
+    <div class="music-list">
+      <div class="header">
+        <div class="row">
+          <i class="list material-icons">queue_music</i>
+          <span>Music List</span>
+        </div>
+        <i id="close" class="material-icons">close</i>
+      </div>
+      <ul>
+       
+      </ul>
+    </div>
+
+
+
+
+
+    <script>
+    let allMusic = [
+    {
+        name: "مولاي الشريف الحمري ",
+        artist: "الله يداوي الحال",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%204.mp3"
+    },
+  {
+        name: "مولاي الشريف الحمري ",
+        artist: "قولوا لغزالي",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%203.mp3"
+    },
+
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "الله يسامحك",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%202.mp3"
+    },
+
+     {
+        name: "مولاي الشريف الحمري ",
+        artist: "الساخي بيا",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/sons/Lhemri%201.mp3"
+    },
+
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "الشاكين فينا",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%208.mp3"
+    },
+  {
+        name: "مولاي الشريف الحمري ",
+        artist: "صامتة مايا",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%207.mp3"
+    },
+
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "صامتة مايا",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%206.mp3"
+    },
+  {
+        name: "مولاي الشريف الحمري ",
+        artist: "بسم الله بدينا",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%205.mp3"
+    },
+
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "ملحون",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/sons/Lhemri%2012.mp3"
+    },
+  {
+        name: "مولاي الشريف الحمري ",
+        artist: "2 ملحون",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/sons/Lhemri%2011.mp3"
+    },
+
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "الملاكة",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/sons/Lhemri%2010.mp3"
+    },
+  {
+        name: "مولاي الشريف الحمري ",
+        artist: "السلامة",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%209.mp3"
+    },
+
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "با راك عزيز",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/sons/Lhemri%2016.mp3"
+    },
+    {
+        name: "مولاي الشريف الحمري ",
+        artist: "بجاهك العالي",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/sons/Lhemri%2015.mp3"
+    },
+  {
+        name: "مولاي الشريف الحمري ",
+        artist: "الملاكة3 ",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/sons/Lhemri%2014.mp3"
+    },
+
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "بلا بسة",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/sons/Lhemri%2013.mp3"
+    },
+    {
+        name: "مولاي الشريف الحمري ",
+        artist: "صامتة مايا",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%2020.mp3"
+    },
+  {
+        name: "مولاي الشريف الحمري ",
+        artist: "ديري هلال",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%2019.mp3"
+    },
+
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "شحال و نتسنا",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%2018.mp3"
+    },
+    {
+        name: "مولاي الشريف الحمري ",
+        artist: "الله يا سيدي",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%2017.mp3"
+    },
+  {
+        name: "مولاي الشريف الحمري ",
+        artist: "عليك نسال",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%2024.mp3"
+    },
+
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "سيدس يا سيدي",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%2023.mp3"
+    },
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "علاش تلومني ",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%2022.mp3"
+    },
+{
+        name: "مولاي الشريف الحمري ",
+        artist: "صامتة مايا",
+        img: "https://anirah87.github.io/HAMRI1/img/lhemri.jpg",
+        src: "https://anirah87.github.io/HAMRI1/son/Lhemri%2021.mp3"
+    },
+
+
+
+
+
+
+
+
+
+  ]; 
+    </script>
+    <script>const container = document.querySelector(".container"),
+      musicImg = container.querySelector(".img-area img"),
+      musicName = container.querySelector(".song-details .name"),
+      musicArtist = container.querySelector(".song-details .artist"),
+      playPauseBtn = container.querySelector(".play-pause"),
+      prevBtn = container.querySelector("#prev"),
+      nextBtn = container.querySelector("#next"),
+      mainAudio = container.querySelector("#main-audio"),
+      progressArea = container.querySelector(".progress-area"),
+      progressBar = progressArea.querySelector(".progress-bar");
+    
+    let musicIndex = 0;
+    let isPlaying = false;
+    
+    window.addEventListener("load", () => {
+      loadMusic(musicIndex);
+    });
+    function loadMusic(indexNumb) {
+      musicName.innerHTML = allMusic[indexNumb].name;
+      musicArtist.innerText = allMusic[indexNumb].artist;
+      musicImg.src = allMusic[indexNumb].img;
+      mainAudio.src = allMusic[indexNumb].src;
+    }
+    function playMusic() {
+      isPlaying = true;
+      playPauseBtn.querySelector("i").innerHTML = "pause";
+    
+      mainAudio.play();
+    }
+    function pauseMusic() {
+      isPlaying = false;
+      playPauseBtn.querySelector("i").innerHTML = "play_arrow";
+    
+      mainAudio.pause();
+    }
+    playPauseBtn.addEventListener("click", () => {
+      isPlaying ? pauseMusic() : playMusic();
+    });
+    
+    function nextMusic() {
+      musicIndex++;
+      musicIndex > allMusic.length - 1
+        ? (musicIndex = 0)
+        : (musicIndex = musicIndex);
+      loadMusic(musicIndex);
+      playMusic();
+    }
+    
+    nextBtn.addEventListener("click", () => {
+      nextMusic();
+    });
+    function prevMusic() {
+      musicIndex--;
+      musicIndex < 0
+        ? (musicIndex = allMusic.length - 1)
+        : (musicIndex = musicIndex);
+      loadMusic(musicIndex);
+      playMusic();
+    }
+    prevBtn.addEventListener("click", () => {
+      prevMusic();
+    });
+    const repeatBtn = container.querySelector("#repeat-plist");
+    
+    repeatBtn.addEventListener("click", () => {
+      let getText = repeatBtn.innerHTML;
+      switch (getText) {
+        case "repeat":
+          repeatBtn.innerHTML = "repeat_one";
+          repeatBtn.setAttribute("title", "Song looped");
+          break;
+        case "repeat_one":
+          repeatBtn.innerHTML = "shuffle";
+          repeatBtn.setAttribute("title", "Playback shuffled");
+          break;
+        case "shuffle":
+          repeatBtn.innerHTML = "repeat";
+          repeatBtn.setAttribute("title", "Playlist looped");
+          break;
+      }
+    });
+    mainAudio.addEventListener("ended", () => {
+      let getText = repeatBtn.innerText;
+      switch (getText) {
+        case "repeat":
+          nextMusic();
+          break;
+        case "repeat_one":
+          mainAudio.currentTime = 0;
+          loadMusic(musicIndex);
+          playMusic();
+          break;
+        case "shuffle":
+          let randIndex = Math.floor(Math.random() * allMusic.length);
+          do {
+            randIndex = Math.floor(Math.random() * allMusic.length);
+          } while (musicIndex == randIndex);
+          {
+            musicIndex = randIndex;
+            loadMusic(musicIndex);
+            playMusic();
+            break;
+          }
+      }
+    });
+    mainAudio.addEventListener("timeupdate", (e) => {
+      const currentTime = e.target.currentTime;
+      const duration = e.target.duration;
+      let progressWidth = (currentTime / duration) * 100;
+      progressBar.style.width = `${progressWidth}%`;
+      let musicCurrentTime = container.querySelector(".current-time"),
+        musicDuration = container.querySelector(".max-duration");
+    
+      mainAudio.addEventListener("loadeddata", () => {
+        const interval = setInterval(() => {
+          const _elapsed = mainAudio.currentTime;
+          musicCurrentTime.innerHTML = formatTime(_elapsed);
+        }, 1000);
+        const _duration = mainAudio.duration;
+        musicDuration.innerHTML = formatTime(_duration);
+        mainAudio.addEventListener("ended", () => {
+          clearInterval(interval);
+        });
+      });
+    });
+    progressArea.addEventListener("click", (e) => {
+      let progressWidth = progressArea.clientWidth;
+      let clickedOffsetX = e.offsetX;
+      let songDuration = mainAudio.duration;
+    
+      mainAudio.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+      playMusic();
+    });
+    
+    function formatTime(time) {
+      if (time && !isNaN(time)) {
+        const minutes =
+          Math.floor(time / 60) < 10
+            ? `0${Math.floor(time / 60)}`
+            : Math.floor(time / 60);
+        const seconds =
+          Math.floor(time % 60) < 10
+            ? `0${Math.floor(time % 60)}`
+            : Math.floor(time % 60);
+        return `${minutes}:${seconds}`;
+      }
+      return "00:00";
+    }
+    </script>
+
+
+
+
+<br>
+<footer>
+
+<h1 style="color: rgb(255, 255, 255); text-align: center;"> وتكويد عبدالله حمداوي <span></span></h1>
+
+</footer>
+  </body>
+</html>
